@@ -1,0 +1,50 @@
+*{
+  margin: 0;
+  padding: 0;
+  /* background: #000 */
+}
+body{
+  background: url("./golden.jpg") no-repeat;
+  background-size: 100%;
+  background-attachment: fixed;
+}
+
+.header{
+  display: flex;
+  flex-direction: row;
+  justify-content:center;
+  align-content:center;
+}
+
+.header img{
+  margin: 1%;
+  height: 30vh;
+}
+
+#btn{
+  display: flex;
+  justify-content:center;
+  width: 100%;
+}
+#btn-group{
+  display: flex;
+  margin-top: 2%;
+}
+
+.search-char,
+.search-char-h1{
+  display: none;
+  visibility: collapse;
+}
+
+.search-char-input{
+  font-size: 1.2rem;
+}
+
+span{
+  text-decoration: underline;
+}
+.sub-span{
+  margin-left: 2%;
+  text-decoration: none;
+}
