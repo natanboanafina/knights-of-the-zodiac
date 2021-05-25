@@ -54,8 +54,12 @@ function filteringData(data){
 function renderFilteredData(filteredData){
 	let newOutput = '';
 	//Beginning of cards creation withd forEach
-	filteredData.forEach(eachItem=>{
+	filteredData.forEach(eachItem =>{
 		newOutput +=
+		// `<span class="sub-span">
+		// 				${master.name}
+		// 			 </span>
+		// 			`
 		`
 		<div class="card p-3 m-3 text-white border-primary text-primary bg-dark" style="opacity: .8;">
 		<h4 class="card-title text-center">
@@ -63,12 +67,7 @@ function renderFilteredData(filteredData){
 			</h4>
 
 			<h5 class="card-title text-center">
-				Mestre: ${eachItem.master.map(master =>{
-					`<span class="sub-span">
-						${master.name}
-					 </span>
-					`
-				})}
+				Mestre: ${eachItem.master.map(master => master.name)}
 			</h5>
 			
 			<div class="card-content">
@@ -94,21 +93,19 @@ function renderFilteredData(filteredData){
 						<br>
 				<span>
 					Attacks
-				</span>: ${eachItem.attacks}
-						<br>
+				</span>: ${eachItem.attacks.map(item => `${item}<br>`)}
+				<br>
 				<span>
 					Family
-				</span>: ${eachItem.family.map(fam =>{
-					`${fam.member}`
-				})}
-						<br>
+				</span>: ${eachItem.family.map(fam =>{ 
+					return `<br>${fam.member}`
+					
+					})}
+					<br>
 				<span>
 					Armor
 				</span>: ${eachItem.cloths.map(armor =>{
-					`
-					<span class="sub-span">
-						Name
-					</span>:	${armor.name}
+					return(`
 							<br>
 					<span class="sub-span">
 						Armor
@@ -121,14 +118,16 @@ function renderFilteredData(filteredData){
 					<span class="sub-span">
 						Rank
 					</span>:	${armor.rank}
-					`
+							<br>
+					`)
 				})}
 						<br>
 			</div>
 		</div>
 		`
 	})//End of cards creation with forEach
-	newResults.innerHTML = newOutput;
+	let formattedOutput = newOutput.replace(/,/g, "\n");
+	newResults.innerHTML = formattedOutput;
 }
 
 //Displaying results
@@ -167,47 +166,58 @@ function displayingResults(data, value){
 							Actual Date
 						</span>: ${eachItem.actualDate}
 								<br>
+								<br>
 						<span>
 							Gender
 						</span>: ${eachItem.gender}
+								<br>
 								<br>
 						<span>
 							Height
 						</span>: ${eachItem.height}
 								<br>
+								<br>
 						<span>
 							Nationality
 						</span>: ${eachItem.nationality}
+								<br>
 								<br>
 						<span>
 							Training
 						</span>: ${eachItem.training}
 								<br>
+								<br>
 						<span>
 							Attacks
-						</span>: ${eachItem.attacks}
+						</span>: ${eachItem.attacks.map(item => `<br>${item}`)}
 								<br>
-						
+								<br>
 						<span>
 							Family
-						</span>: ${eachItem.family.map(fam => {
-							`
-								<span class="sub-span">
-									Name
-								</span>: ${fam.member} 
-										<br>
-							`
-						})}
+						</span>${eachItem.family.map(fam =>{ 
+							return `<br>${fam.member}`
+							
+							})}
+								<br>
 								<br>
 						<span>
 							Armor
-						</span>: ${eachItem.cloths.map(cl=>{
-									`<br>
-								<span class="sub-span">Nome: ${cl.name}</span><br>
-								<span class="sub-span">Armadura: ${cl.cloth}</span><br>
-								<span class="sub-span">Grupo: ${cl.group}</span><br>
-								<span class="sub-span">Nível: ${cl.rank}</span><br>
-									`
+						</span>: ${eachItem.cloths.map(armor =>{
+							return(`
+									<br>
+							<span class="sub-span">
+								Armor
+							</span>:	${armor.cloth}
+									<br>
+							<span class="sub-span">
+								Group
+							</span>:	${armor.group}
+									<br>
+							<span class="sub-span">
+								Rank
+							</span>:	${armor.rank}
+									<br>
+							`)
 						})}
 								<br>
 					</div>
@@ -240,6 +250,7 @@ function displayingResults(data, value){
 		})//End of data.forEach
 	}//end of Else If Curiosities
 	inputSearch.focus();
-	results.innerHTML = output;
+	let formattedOutput = output.replace(/,/g, "\n");
+	results.innerHTML = formattedOutput;
 }
 //END OF FUNCTIONS

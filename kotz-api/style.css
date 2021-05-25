@@ -4,7 +4,7 @@
   /* background: #000 */
 }
 body{
-  background: url("./golden.jpg") no-repeat;
+  background: url("./cdz.jpg") no-repeat;
   background-size: 100%;
   background-attachment: fixed;
 }
@@ -18,7 +18,7 @@ body{
 
 .header img{
   margin: 1%;
-  height: 30vh;
+  height: 60vh;
 }
 
 #btn{
@@ -44,6 +44,7 @@ body{
 span{
   text-decoration: underline;
 }
+
 .sub-span{
   margin-left: 2%;
   text-decoration: none;
