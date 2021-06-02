@@ -1,51 +1,161 @@
 *{
   margin: 0;
   padding: 0;
+  box-sizing: border-box
   /* background: #000 */
 }
+
 body{
   background: url("./cdz.jpg") no-repeat;
-  background-size: 100%;
+  background-size: cover;
   background-attachment: fixed;
+  display: flex;
+  flex-direction: column;
 }
 
 .header{
   display: flex;
-  flex-direction: row;
-  justify-content:center;
-  align-content:center;
+  flex-direction: column;
+  width: auto;
+  height: auto;
 }
 
 .header img{
-  margin: 1%;
-  height: 60vh;
+  width: auto;
+  height: auto;
+  flex-wrap: wrap !important;
 }
 
 #btn{
   display: flex;
-  justify-content:center;
-  width: 100%;
+  flex-direction: column;
+  flex-wrap: wrap !important
 }
+
 #btn-group{
   display: flex;
-  margin-top: 2%;
+  flex-direction: column;
+  flex-wrap: wrap !important;
+}
+
+#btn #btn-group #btn-1,
+#btn #btn-group #btn-2{
+  width: auto;
+  display: flex;
+  flex-wrap: wrap !important;
+
+  flex-direction: column;
+}
+
+#btn #btn-group #btn-1{
+  margin-bottom: .15rem;
 }
 
 .search-char,
-.search-char-h1{
-  display: none;
-  visibility: collapse;
+  .search-char-h1{
+    display: none;
+    visibility: collapse;
+  }
+  
+  .search-char-input{
+    font-size: 1.2rem;
+  }
+  
+  span{
+    text-decoration: underline;
+  }
+  
+  .sub-span{
+    margin-left: 2%;
+    text-decoration: none;
+  }
+
+@media screen and (min-width: 750px){
+  body{
+    display: flex;
+    flex-wrap: wrap;
+    background: url("./cdz.jpg") no-repeat;
+    background-size: cover;
+    background-attachment: fixed;
+    transition: background 3s ease-in-out;
+  }
+  
+  body:hover{
+    background: url("./golden.jpg") no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+  }
+
+  .header{
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-content:center;
+    flex-wrap: wrap;
+
+  }
+  
+  .header img{
+    margin: 1%;
+    height: 60vh;
+  }
+  
+  #btn{
+    display: flex;
+    justify-content:center;
+    width: 100%;
+  }
+
+  #btn-group{
+    display: flex;
+    flex-direction: row;
+    margin-top: 2%;
+    justify-content:space-evenly;
+  }
+  
+  
+  
 }
 
-.search-char-input{
-  font-size: 1.2rem;
+@media screen and (min-width: 821px){
+
+body{
+  background: url("./cdz.jpg") no-repeat;
+  background-size: cover;
+  background-attachment: fixed;
+  transition: background 3s ease-in-out;
 }
 
-span{
-  text-decoration: underline;
+body:hover{
+  background: url("./golden.jpg") no-repeat;
+  background-attachment: fixed;
+
+  background-size: cover;
 }
 
-.sub-span{
-  margin-left: 2%;
-  text-decoration: none;
+  .header img{
+    margin: 1%;
+    justify-content:center;
+  }
+  
+  .header{
+    display: flex;
+    flex-direction: row;
+    justify-content:center;
+    align-content:center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+
+  #search-box{
+    align-content: center;
+    align-items: center;
+    justify-content: center;
+
+  }
+
+  #search-box #dynamic-input{
+    width: 95%;
+    height: 6vh;
+  }
 }
