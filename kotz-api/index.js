@@ -12,6 +12,8 @@ const curiositiesList = document.querySelector('#list-title-curiosities');
 const inputSearch = document.querySelector('#dynamic-input');
 
 const char = document.querySelector('#btn')
+
+const spin = document.querySelector('.spin')
 //END OF QUERY-SELECTORS
 
 //BEGINNING OF EVENTS
@@ -22,12 +24,22 @@ char.addEventListener('click', (e) =>{
 
 //BEGINNING OF FUNCTIONS
 async function fetchingApi(value){
-	let res = await fetch(`https://saint-seiya-api.herokuapp.com/api/${value}`);
 
-	let data = await res.json();
+	try{
+		let res = await fetch(`https://saint-seiya-api.herokuapp.com/api/${value}`);
+		spin.classList.remove('spin');
+		let data = await res.json();
+		spin.classList.add('spin');
 
-	displayingResults(data, value);
-	filteringData(data);
+		displayingResults(data, value);
+		filteringData(data);
+	}
+
+	catch(e){
+		console.log(e);
+	}
+
+
 }
 
 //Filtering data from API
@@ -38,12 +50,15 @@ function filteringData(data){
 
 		//Beginning of keyup event to capture Enter button
 		inputSearch.addEventListener('keyup', (event)=>{
+			
 			//Beginning of If
 			if(event.key === 'Enter' && newInputSearch !== ''){
-
+				
 				let filteredData = data.filter(item =>{
+
 					return item.name.trim().toLowerCase().indexOf(newInputSearch) > -1;
 				})//End of filteredData
+				
 				renderFilteredData(filteredData);
 			}//End of If
 		})//End of keyup event
@@ -53,8 +68,9 @@ function filteringData(data){
 //Rendering filtered data from API
 function renderFilteredData(filteredData){
 	let newOutput = '';
-	//Beginning of cards creation withd forEach
+	//Beginning of cards creation with forEach
 	filteredData.forEach(eachItem =>{
+
 		newOutput +=
 		// `<span class="sub-span">
 		// 				${master.name}
@@ -136,12 +152,15 @@ function displayingResults(data, value){
 
 	//Beginning of characters if
 	if(value === 'characters'){
+
 		if(searchBox.classList.contains('search-char')){
+
 			searchBox.classList.remove('search-char');
 			searchBox.classList.add('search-char-input');
 		}//End of inner if one
 
 		if(listTitle.classList.contains('search-char-h1')){
+					
 			listTitle.classList.remove('search-char-h1');
 			curiositiesList.classList.add('search-char-h1');
 		}//End of inner if two
@@ -228,6 +247,7 @@ function displayingResults(data, value){
 
 	//Beginning of Else If curiosities
 	else if(value === 'curiosities'){
+		
 		if (curiositiesList.classList.contains('search-char-h1')) {
 			curiositiesList.classList.remove('search-char-h1');
 			searchBox.classList.add('search-char');
@@ -236,6 +256,7 @@ function displayingResults(data, value){
 		}//End of inner if
 
 		data.forEach(eachItem =>{
+
 			output +=
 			`
 				<div class="card p-3 m-3 text-white border-primary text-primary bg-dark" style="opacity: .8">
